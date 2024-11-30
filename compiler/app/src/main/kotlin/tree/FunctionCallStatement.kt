@@ -1,18 +1,14 @@
 package tree
 
+import assembly.AddInstruction
 import assembly.Instruction
 import assembly.LoadImmediateInstruction
-import assembly.StoreInstruction
-
-interface Statement {
-    fun addAssembly(instructions: ArrayList<Instruction>)
-}
 
 data class FunctionCallStatement(
     val functionName: String,
-    val args: List<Literal>
+    val args: List<Expression>
 ): Statement {
-    override fun addAssembly(instructions: ArrayList<Instruction>) {
+    override fun addAssembly(instructions: ArrayList<Instruction>, compileContext: CompileContext) {
         if (args.size > 3) {
             throw IllegalArgumentException("Too many args (${args.size}) to $functionName")
         }
@@ -27,6 +23,8 @@ data class FunctionCallStatement(
                     register = index + 1,
                     value = literal.number
                 )
+
+                is ReadVariable -> AddInstruction()
             }
         }
         // 'call' the function
@@ -38,10 +36,4 @@ data class FunctionCallStatement(
             TODO("Support non-built in functions, like $functionName")
         }
     }
-}
-
-object CommentStatement: Statement {
-    override fun toString() = "Comment"
-
-    override fun addAssembly(instructions: ArrayList<Instruction>) {}
 }

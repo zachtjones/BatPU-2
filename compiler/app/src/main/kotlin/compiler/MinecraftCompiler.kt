@@ -1,6 +1,7 @@
 package compiler
 
 import assembly.*
+import tree.CompileContext
 import tree.Program
 
 object MinecraftCompiler {
@@ -16,8 +17,10 @@ object MinecraftCompiler {
         for (function in program.functions) {
             instructions += LabelInstruction(function.name)
 
+            // each function has their own compile context
+            val context = CompileContext()
             function.body.forEach {
-                it.addAssembly(instructions)
+                it.addAssembly(instructions, context)
             }
 
             instructions += ReturnInstruction
