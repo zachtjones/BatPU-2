@@ -123,3 +123,29 @@ Examples:
 * `fun hi(a, b, c) { ... }`
 
 Your functions can be in any order.
+
+
+## Output of the compiler
+
+Output will be the assembly code
+
+The following is the calling convention
+
+r0 - zero register
+r1 - argument 1
+r2 - argument 2
+r3 - argument 3
+
+r4-r9 - scratch registers - modified when calling other functions
+
+r10-r14 - persisted registers - not modified when calling other functions
+
+r15 - return value
+
+Memory usage:
+* 0 - persist r10
+* 1 - persist r11
+* 2 - persist r12
+* 3 - persist r13
+* 4 - persist r14
+

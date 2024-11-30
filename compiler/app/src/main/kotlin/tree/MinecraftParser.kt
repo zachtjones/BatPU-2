@@ -1,4 +1,4 @@
-package org.example
+package tree
 
 import com.github.h0tk3y.betterParse.combinators.*
 import com.github.h0tk3y.betterParse.grammar.Grammar
@@ -6,22 +6,7 @@ import com.github.h0tk3y.betterParse.lexer.literalToken
 import com.github.h0tk3y.betterParse.lexer.regexToken
 import com.github.h0tk3y.betterParse.parser.Parser
 
-interface Literal
-
-data class CharacterLiteral(val character: Char): Literal
-data class NumberLiteral(val number: Int): Literal
-
-interface Statement
-
-data class FunctionCallStatement(
-    val functionName: String,
-    val args: List<Literal>
-): Statement
-object CommentStatement: Statement
-
-data class FunctionDeclaration(val name: String, val body: List<Statement>)
-
-object MinecraftParser : Grammar<List<FunctionDeclaration>>() {
+object MinecraftParser : Grammar<Program>() {
     private val funToken by literalToken("fun")
 //    private val ifToken by literalToken("if")
 //    private val elseToken by literalToken("else")
@@ -69,5 +54,7 @@ object MinecraftParser : Grammar<List<FunctionDeclaration>>() {
 
 
 
-    override val rootParser: Parser<List<FunctionDeclaration>> by separatedTerms(funParser, spacesToken or commentToken)
+    override val rootParser: Parser<Program> by separatedTerms(funParser, spacesToken or commentToken) use {
+        Program(functions = this)
+    }
 }

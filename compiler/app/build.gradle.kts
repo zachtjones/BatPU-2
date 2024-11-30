@@ -20,6 +20,8 @@ repositories {
 
 dependencies {
     implementation("com.github.h0tk3y.betterParse:better-parse:0.4.4")
+
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")
 }
 
 testing {
@@ -41,5 +43,5 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.AppKt"
+    mainClass = "compiler.AppKt"
 }
