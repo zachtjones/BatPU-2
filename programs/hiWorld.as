@@ -1,0 +1,37 @@
+CAL .main
+HLT
+.main
+LDI r1 249
+STR r1 r0 0
+LDI r1 248
+STR r1 r0 0
+LDI r1 'H'
+LDI r2 247
+STR r2 r1 0
+LDI r1 'I'
+LDI r2 247
+STR r2 r1 0
+LDI r1 ' '
+LDI r2 247
+STR r2 r1 0
+LDI r1 'W'
+LDI r2 247
+STR r2 r1 0
+LDI r1 'O'
+LDI r2 247
+STR r2 r1 0
+LDI r1 'R'
+LDI r2 247
+STR r2 r1 0
+LDI r1 'L'
+LDI r2 247
+STR r2 r1 0
+LDI r1 'D'
+LDI r2 247
+STR r2 r1 0
+LDI r1 '!'
+LDI r2 247
+STR r2 r1 0
+LDI r1 248
+STR r1 r0 0
+RET

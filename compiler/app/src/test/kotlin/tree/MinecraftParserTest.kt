@@ -12,19 +12,19 @@ class MinecraftParserTest {
             functions = listOf(
                 FunctionDeclaration("main", body = listOf(
                     CommentStatement,
-                    FunctionCallStatement("_clearCharacterBuffer", args = emptyList()),
-                    FunctionCallStatement("_writeCharacterBuffer", args = emptyList()),
+                    FunctionCallStatement("_clearCharsBuffer", args = emptyList()),
+                    FunctionCallStatement("_bufferChars", args = emptyList()),
                     CommentStatement,
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('H'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('I'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral(' '))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('W'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('O'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('R'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('L'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('D'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('!'))),
-                    FunctionCallStatement("_writeCharacterBuffer", args = emptyList()),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('H'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('I'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral(' '))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('W'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('O'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('R'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('L'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('D'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('!'))),
+                    FunctionCallStatement("_bufferChars", args = emptyList()),
                 ))
             )
         )
@@ -34,20 +34,20 @@ class MinecraftParserTest {
     private val helloWorldProgram = """
         fun main() {
             // clear between runs
-            _clearCharacterBuffer()
-            _writeCharacterBuffer()
-
+            _clearCharsBuffer()
+            _bufferChars()
+        
             // show the display
-            _appendCharacter('H')
-            _appendCharacter('I')
-            _appendCharacter(' ')
-            _appendCharacter('W')
-            _appendCharacter('O')
-            _appendCharacter('R')
-            _appendCharacter('L')
-            _appendCharacter('D')
-            _appendCharacter('!')
-            _writeCharacterBuffer()
+            _writeChar('H')
+            _writeChar('I')
+            _writeChar(' ')
+            _writeChar('W')
+            _writeChar('O')
+            _writeChar('R')
+            _writeChar('L')
+            _writeChar('D')
+            _writeChar('!')
+            _bufferChars()
         }
     """.trimIndent()
 }

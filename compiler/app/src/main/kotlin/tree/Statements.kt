@@ -30,27 +30,12 @@ data class FunctionCallStatement(
             }
         }
         // 'call' the function
-        when (functionName) {
-            "_appendCharacter" -> {
-                require(args.size == 1) { "_appendCharacter takes 1 argument" }
-                instructions += LoadImmediateInstruction(2, 247)
-                instructions += StoreInstruction(valueR = 1, baseR = 2)
-            }
-            "_writeCharacterBuffer" -> {
-                require(args.isEmpty()) { "_writeCharacterBuffer takes no arguments" }
-                instructions += LoadImmediateInstruction(1, 248)
-                instructions += StoreInstruction(valueR = 0, baseR = 1)
-            }
-            "_clearCharacterBuffer" -> {
-                require(args.isEmpty()) { "_writeCharacterBuffer takes no arguments" }
-                instructions += LoadImmediateInstruction(1, 249)
-                instructions += StoreInstruction(valueR = 0, baseR = 1)
-            }
-            // TODO support remaining special names.
-            else -> {
-                // TODO support custom function names
-                throw IllegalArgumentException("Function $functionName not supported")
-            }
+        val builtInFunction = BuiltInFunction.getOrNull(functionName)
+        if (builtInFunction != null) {
+            require(args.size == builtInFunction.expectedArgs) { "$functionName takes ${builtInFunction.expectedArgs} argument(s)" }
+            builtInFunction.addAssembly(instructions)
+        } else {
+            TODO("Support non-built in functions, like $functionName")
         }
     }
 }

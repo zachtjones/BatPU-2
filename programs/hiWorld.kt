@@ -1,17 +1,17 @@
 fun main() {
     // clear between runs
-    _clearCharacterBuffer()
-    _writeCharacterBuffer()
+    _clearCharsBuffer()
+    _bufferChars()
 
     // show the display
-    _appendCharacter('H')
-    _appendCharacter('I')
-    _appendCharacter(' ')
-    _appendCharacter('W')
-    _appendCharacter('O')
-    _appendCharacter('R')
-    _appendCharacter('L')
-    _appendCharacter('D')
-    _appendCharacter('!')
-    _writeCharacterBuffer()
+    _writeChar('H')
+    _writeChar('I')
+    _writeChar(' ')
+    _writeChar('W')
+    _writeChar('O')
+    _writeChar('R')
+    _writeChar('L')
+    _writeChar('D')
+    _writeChar('!')
+    _bufferChars()
 }

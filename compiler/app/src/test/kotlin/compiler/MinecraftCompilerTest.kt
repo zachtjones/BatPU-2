@@ -13,12 +13,12 @@ class MinecraftCompilerTest {
             functions = listOf(
                 FunctionDeclaration("main", body = listOf(
                     CommentStatement,
-                    FunctionCallStatement("_clearCharacterBuffer", args = emptyList()),
-                    FunctionCallStatement("_writeCharacterBuffer", args = emptyList()),
+                    FunctionCallStatement("_clearCharsBuffer", args = emptyList()),
+                    FunctionCallStatement("_bufferChars", args = emptyList()),
                     CommentStatement,
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('H'))),
-                    FunctionCallStatement("_appendCharacter", args = listOf(CharacterLiteral('I'))),
-                    FunctionCallStatement("_writeCharacterBuffer", args = emptyList()),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('H'))),
+                    FunctionCallStatement("_writeChar", args = listOf(CharacterLiteral('I'))),
+                    FunctionCallStatement("_bufferChars", args = emptyList()),
                 ))
             )
         )

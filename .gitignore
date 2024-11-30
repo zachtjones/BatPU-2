@@ -8,3 +8,10 @@ compiler/app/build
 
 # ignore intellij specific files
 .idea
+
+# Mac OS files
+**/*.DS_Store
+
+# Python generated files
+venv
+__pycache__
