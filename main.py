@@ -2,7 +2,7 @@ from assembler import assemble
 from schematic import make_schematic
 
 def main():
-    program = 'hiWorld'
+    program = 'countdown'
     
     as_filename = f'programs/{program}.as'
     mc_filename = f'programs/{program}.mc'

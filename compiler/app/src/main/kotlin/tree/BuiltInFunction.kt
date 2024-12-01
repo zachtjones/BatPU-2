@@ -37,7 +37,7 @@ enum class BuiltInFunction(
     BUFFER_CHARS(languageName = "_bufferChars", expectedArgs = 0, returns = false),
     CLEAR_CHARS_BUFFER(languageName = "_clearCharsBuffer", expectedArgs = 0, returns = false),
 
-    SHOW_NUMBER(languageName = "_showNumber", expectedArgs = 0, returns = false),
+    SHOW_NUMBER(languageName = "_showNumber", expectedArgs = 1, returns = false),
     CLEAR_NUMBER(languageName = "_clearNumber", expectedArgs = 0, returns = false),
     SIGNED_MODE(languageName = "_signedMode", expectedArgs = 0, returns = false),
     UNSIGNED_MODE(languageName = "_unsignedMode", expectedArgs = 0, returns = false),
@@ -48,38 +48,50 @@ enum class BuiltInFunction(
 
     fun addAssembly(instructions: ArrayList<Instruction>) {
         when (this) {
-            DRAW_PIXEL -> TODO()
-            CLEAR_PIXEL -> TODO()
-            GET_PIXEL -> TODO()
-            BUFFER_SCREEN -> TODO()
-            CLEAR_SCREEN_BUFFER -> TODO()
+            DRAW_PIXEL -> TODO() // set x -> 240, y -> 241, set r0 -> 242
+            CLEAR_PIXEL -> TODO() // set x -> 240, y -> 241, set r0 -> 243
+            GET_PIXEL -> TODO() // set x -> 240, y -> 241, get r15 <- 244
+            BUFFER_SCREEN -> TODO() // set r0 -> 245
+            CLEAR_SCREEN_BUFFER -> TODO() // set r0 -> 246
             WRITE_CHAR -> {
+                // store arg1 at 247
                 instructions += LoadImmediateInstruction(2, 247)
                 instructions += StoreInstruction(valueR = 1, baseR = 2)
             }
             BUFFER_CHARS -> {
+                // store anything (0) at 248
                 instructions += LoadImmediateInstruction(1, 248)
                 instructions += StoreInstruction(valueR = 0, baseR = 1)
             }
             CLEAR_CHARS_BUFFER -> {
+                // store anything (0) at 249
                 instructions += LoadImmediateInstruction(1, 249)
                 instructions += StoreInstruction(valueR = 0, baseR = 1)
             }
-            SHOW_NUMBER -> TODO()
-            CLEAR_NUMBER -> TODO()
-            SIGNED_MODE -> TODO()
-            UNSIGNED_MODE -> TODO()
-            RANDOM -> TODO()
-            CONTROLLER -> TODO()
+            SHOW_NUMBER -> {
+                // store arg1 at 250
+                instructions += LoadImmediateInstruction(2, 250)
+                instructions += StoreInstruction(valueR = 1, baseR = 2)
+            }
+            CLEAR_NUMBER -> {
+                // store anything (0) at 251
+                instructions += LoadImmediateInstruction(1, 251)
+                instructions += StoreInstruction(valueR = 0, baseR = 1)
+            }
+            SIGNED_MODE -> {
+                // store anything (0) at 252
+                instructions += LoadImmediateInstruction(1, 252)
+                instructions += StoreInstruction(valueR = 0, baseR = 1)
+            }
+            UNSIGNED_MODE -> {
+                // store anything (0) at 253
+                instructions += LoadImmediateInstruction(1, 253)
+                instructions += StoreInstruction(valueR = 0, baseR = 1)
+            }
+            RANDOM -> TODO() // 254
+            CONTROLLER -> TODO() // 255
         }
     }
-
-    /*
-    *
-    * 'write_char', 'buffer_chars', 'clear_chars_buffer',
-    * 'show_number', 'clear_number', 'signed_mode', 'unsigned_mode',
-    * 'rng', 'controller_input'
-    * */
 
     companion object {
         private val map = entries.associateBy { it.languageName }

@@ -31,7 +31,7 @@ object MinecraftParser : Grammar<Program>() {
     private val increment by literalToken("++")
 
     private val characterLiteralToken by regexToken("'.'")
-    private val numberLiteralToken by regexToken("[0-9]+")
+    private val numberLiteralToken by regexToken("(-)?[0-9]+")
     private val identifierToken by regexToken("[_A-Za-z][_A-Za-z0-9]*")
     private val spacesToken by regexToken("[ \n\r\t]+", ignore = true)
     private val commentToken by regexToken("//.*\n?", ignore = true)

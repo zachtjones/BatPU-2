@@ -18,7 +18,7 @@ object MinecraftCompiler {
             instructions += LabelInstruction(function.name)
 
             // each function has their own compile context
-            val context = CompileContext()
+            val context = CompileContext(functionName = function.name)
             function.body.forEach {
                 it.addAssembly(instructions, context)
             }

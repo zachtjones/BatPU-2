@@ -13,18 +13,27 @@ data class FunctionCallStatement(
             throw IllegalArgumentException("Too many args (${args.size}) to $functionName")
         }
         // move in the args
-        args.forEachIndexed { index, literal ->
-            instructions += when (literal) {
+        args.forEachIndexed { index, expression ->
+            // r1 for arg 1, ...
+            val targetRegister = index + 1
+            instructions += when (expression) {
                 is CharacterLiteral -> LoadImmediateInstruction(
-                    register = index + 1,
-                    value = literal.character
+                    register = targetRegister,
+                    value = expression.character
                 )
                 is NumberLiteral -> LoadImmediateInstruction(
-                    register = index + 1,
-                    value = literal.number
+                    register = targetRegister,
+                    value = expression.number
                 )
 
-                is ReadVariable -> AddInstruction()
+                is ReadVariable -> {
+                    val sourceRegister = compileContext.getSymbolEntry(expression.variableName)
+                    AddInstruction(
+                        regA = sourceRegister,
+                        regB = 0,
+                        regResult = targetRegister
+                    )
+                }
             }
         }
         // 'call' the function
